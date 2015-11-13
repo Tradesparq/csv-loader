@@ -22,7 +22,7 @@ var (
 
 func init() {
 	flag.StringVar(&redisAddr, "redis-addr", ":6379", "the `address:port` of the redis server")
-	flag.StringVar(&rawDataFile, "rawDataFile", "", "raw data file name")
+	flag.StringVar(&rawDataFile, "raw-data-file", "", "raw data file name")
 	flag.Int64Var(&maxSetSize, "max-set-size", -1, "the max size of redis set")
 	flag.Parse()
 
