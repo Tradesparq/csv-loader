@@ -14,13 +14,15 @@ import (
 )
 
 var (
-	redisKey   string
-	redisAddr  string
-	maxSetSize int64
+	redisKey    string
+	redisAddr   string
+	rawDataFile string
+	maxSetSize  int64
 )
 
 func init() {
 	flag.StringVar(&redisAddr, "redis-addr", ":6379", "the `address:port` of the redis server")
+	flag.StringVar(&rawDataFile, "rawDataFile", "", "raw data file name")
 	flag.Int64Var(&maxSetSize, "max-set-size", -1, "the max size of redis set")
 	flag.Parse()
 
@@ -64,6 +66,10 @@ func main() {
 		}
 
 		m := make(map[string]string)
+
+		if rawDataFile != "" {
+			m["RawDataFile"] = rawDataFile
+		}
 
 		for i, h := range header {
 			m[h] = row[i]
